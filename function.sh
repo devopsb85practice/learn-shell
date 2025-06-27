@@ -9,4 +9,7 @@ sample() {
 
   }
 sample
+# function should be used across the scripts not in single script
 
+#importing functions and variable
+source is used to import the dunction or variable

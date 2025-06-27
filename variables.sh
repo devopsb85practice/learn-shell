@@ -3,4 +3,4 @@ if you assign a name to a set of data it is called as variable.
 #access the variable '$'
 
 Ex: x=100
-echo $x
+echo x value is $x

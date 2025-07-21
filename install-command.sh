@@ -11,3 +11,10 @@ else
 fi
 
 dnf install mysql -y
+
+if [ $? -eq 0 ]
+then
+    echo " installing MYSQL is success"
+else
+    echo "installing MYSQL is failure"
+fi

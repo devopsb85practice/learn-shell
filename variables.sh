@@ -1,6 +1,8 @@
-if you assign a name to a set of data it is called as variable.
-#syntax varname = data
-#access the variable '$'
+#!/bin/bash
 
-Ex: x=100
-echo x value is $x
+PERSON1 = trump
+PERSON2 = musk
+
+echo "$PERSON1: hey musk, how are you?"
+echo "$person2: hello $PERSON1, i am fine, how are you?"
+echo "$PERSON1: ok $person2"

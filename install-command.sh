@@ -1,0 +1,12 @@
+#!/bin/bash
+
+USERID=$(id -u)
+
+if [ "$USERID -nt 0" ]
+then
+    echo "ERROR :: please run the script with root access"
+else
+    echo "you are running with root access"
+fi
+
+dnf install mysql -y

@@ -26,8 +26,8 @@ if [ $1 -eq 0 ]
 echo "script started executing at $(date)"| tee -a $LOG_FILE
 
 PACKAGES=("nginx" "mysql" "python3" "httpd")
-for package in ${PACKAGES[@]}
-# for package in $@
+# for package in ${PACKAGES[@]}
+for package in $@
 do
     dnf list installed $package &>>$LOG_FILE
     if [ $? -ne 0 ]

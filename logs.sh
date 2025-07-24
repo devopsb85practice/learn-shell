@@ -9,7 +9,7 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="/$LOGS_FOLDER/$SCRIPT_NAME.log"
 
 mkdir -p $LOGS_FOLDER
-echo "script started executing at $(date)" &>>$LOG_FILE
+echo "script started executing at $(date)"| tee -a $LOG_FILE
 
 if [ "$USERID" -ne 0 ]
 then
@@ -18,7 +18,7 @@ then
 else
     echo -e "$G you are running with root access" | tee -a $LOG_FILE
 fi
-dnf list installed mysql
+dnf list installed mysql &>>$LOG_FILE
 VALIDATE(){
 if [ $1 -eq 0 ]
     then
@@ -30,25 +30,26 @@ if [ $1 -eq 0 ]
 if [ $? -ne 0 ]
 then
     echo -e "$N Mysql not installed ...going to install now $N" &>>$LOG_FILE
-    dnf install mysql -y
+    dnf install mysql -y | tee -a $LOG_FILE
     VALIDATE $? "MySql"
 else
     echo -e "$Y mysql already installed $N" | tee -a $LOG_FILE
 fi
 
-dnf list installed python3
+dnf list installed python3 &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
     echo -e "$G python3 not installed ...going to install now $N" | tee -a $LOG_FILE
+    dnf install python3 -y &>>$LOG_FILE
     VALIDATE $? "python3"
 else
     echo -e "$Y python3 already installed $N" | tee -a $LOG_FILE
 fi
-dnf list installed nginx
+dnf list installed nginx &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
     echo -e "$G nginx not installed ...going to install now $N" | tee -a $LOG_FILE
-    dnf install nginx -y
+    dnf install nginx -y &>>$LOG_FILE
     VALIDATE $? "nginx"
 else
     echo -e "$Y nginx already installed $N" | tee -a $LOG_FILE

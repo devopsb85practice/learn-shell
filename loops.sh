@@ -30,11 +30,11 @@ for package in "{$PACKAGES[@]}"
 do
     dnf list installed $package &>>$LOG_FILE
     if [ $? -ne 0 ]
-then
+    then
     echo -e "$N $package not installed ...going to install now $N" &>>$LOG_FILE
     dnf install $package -y | tee -a $LOG_FILE
     VALIDATE $? "$package"
-else
-    echo -e "$Y $package already installed $N" | tee -a $LOG_FILE
-fi
+    else
+        echo -e "$Y $package already installed $N" | tee -a $LOG_FILE
+    fi
 done

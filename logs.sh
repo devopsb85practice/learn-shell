@@ -13,19 +13,18 @@ echo "script started executing at $(date)" &>>$LOG_FILE
 
 if [ "$USERID" -ne 0 ]
 then
-    echo -e "$R ERROR :: please run the script with root access$N" &>>$LOG_FILE
+    echo -e "$R ERROR :: please run the script with root access$N" | tee -a $LOG_FILE
     exit 1 #other than 0
 else
-    echo -e "$G you are running with root access" &>>$LOG_FILE
+    echo -e "$G you are running with root access" | tee -a $LOG_FILE
 fi
 dnf list installed mysql
 VALIDATE(){
 if [ $1 -eq 0 ]
     then
-        echo -e "$N installing $2 is $G success $N" &>>$LOG_FILE
+        echo -e "$N installing $2 is $G success $N" | tee -a $LOG_FILE
     else
-        echo "$N installing $2 is $R failure $N" &>>$LOG_FILE
-    
+        echo "$N installing $2 is $R failure $N" | tee -a $LOG_FILE
     fi
 }
 if [ $? -ne 0 ]

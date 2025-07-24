@@ -25,7 +25,7 @@ if [ $1 -eq 0 ]
 
 echo "script started executing at $(date)"| tee -a $LOG_FILE
 
-PACKAGES=("nginx" "mysql", "python3")
+PACKAGES=("nginx" "mysql" "python3")
 for package in "{$PACKAGES[@]}"
 do
     dnf list installed $package &>>$LOG_FILE
@@ -35,6 +35,6 @@ then
     dnf install $package -y | tee -a $LOG_FILE
     VALIDATE $? "$package"
 else
-    echo -e "$Y $pakage already installed $N" | tee -a $LOG_FILE
+    echo -e "$Y $package already installed $N" | tee -a $LOG_FILE
 fi
 done

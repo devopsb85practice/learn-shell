@@ -37,6 +37,3 @@ then
 else
     echo -e "$Y $pakage already installed $N" | tee -a $LOG_FILE
 fi
-  
-
-
